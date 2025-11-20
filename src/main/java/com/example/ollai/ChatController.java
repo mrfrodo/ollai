@@ -1,4 +1,5 @@
 package com.example.ollai;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,8 @@ public class ChatController {
     }
 
     @GetMapping
-    public String hello(@RequestParam(value = "message", defaultValue = "Tell me a joke") String message) {
+    public String hello(@RequestParam(value = "message", defaultValue = "Tell me a joke") String message,
+                        HttpSession session) {
         long t0 = System.currentTimeMillis();
         String call = this.chatModel.call(message);
         long t1 = System.currentTimeMillis();
